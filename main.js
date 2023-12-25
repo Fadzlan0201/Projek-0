@@ -64,6 +64,8 @@
  * /visitorRegister:
  *   post:
  *     summary: Register a new visitor
+ *     tags: 
+ *       - User Management
  *     description: Endpoint to create a new visitor record.
  *     requestBody:
  *       description: Visitor information
