@@ -22,7 +22,7 @@ const swaggerSpec = swaggerJsdoc(options);
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // MongoDB connection URL
 const uri =
-  'mongodb+srv://fadzlan:fadzlan123@projek.7wchvog.mongodb.net/apartmentvisitor';
+  'mongodb+srv://fadzlan:fadzlan123@myserver.pcmmpqt.mongodb.net/apartmentvisitor?retryWrites=true&w=majority';
 
 // Create a new MongoClient
 const client = new MongoClient(uri, { useNewUrlParser: true, useUnifiedTopology: true });
