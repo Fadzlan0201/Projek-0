@@ -13,14 +13,14 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'MyVMS API',
+      title: 'GROUP 3 SERVER',
       version: '1.0.0',
     },
   },
   apis: ['./main.js'],
 };
 const swaggerSpec = swaggerJsdoc(options);
-app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+app.use('/group3', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
 // MongoDB connection URL
 const uri =
   'mongodb+srv://fadzlan:fadzlan123@myserver.pcmmpqt.mongodb.net/apartmentvisitor?retryWrites=true&w=majority';
