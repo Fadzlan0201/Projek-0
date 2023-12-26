@@ -177,7 +177,7 @@ app.post('/logout', (req, res) => {
 });
 
 //Create a visitor
-app.post('/visitorRegister', (req, res) => {
+app.post('/visitorRegister', verifyToken, (req, res) => {
   const { name, contact, gender } = req.body;
 
   // Generate a random 8-digit number for accesspass
