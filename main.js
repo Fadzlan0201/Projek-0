@@ -13,7 +13,7 @@
  * /login:
  *   post:
  *     summary: Authenticate a user
- *     tags: [Authentication]
+ *     tags: User Management
  *     requestBody:
  *       description: User credentials for authentication
  *       required: true
@@ -43,7 +43,7 @@
  *       summary: Admin Login
  *       description: Authenticate an admin user and generate an authentication token.
  *       tags:
- *         - Admin
+ *         - Admin Management
  *       requestBody:
  *         description: Admin login credentials
  *         required: true
