@@ -176,42 +176,8 @@ app.post('/logout', (req, res) => {
   res.send('User logged out successfully');
 });
 
-// Create a visitor
-// app.post('/visitorRegister', (req, res) => {
-//   const { name, contact, gender } = req.body;
-
-//   // Generate a random 8-digit number for accesspass
-//   const accesspass = Math.floor(10000000 + Math.random() * 90000000);
-
-//   const visitorData = {
-//     accesspass: accesspass.toString(),
-//     name,
-//     contact,
-//     gender,
-//     building: null,
-//     apartment: null,
-//     whomtovisit: null,
-//     entryTime: null,
-//     checkoutTime: null
-//   };
-
-//   // Assuming you want to set these values from the request body
-//   visitorData.building = req.body.building;
-//   visitorData.apartment = req.body.apartment;
-
-//   // Assuming you want to remove the logic related to finding resident information
-
-//   visitorsCollection
-//     .insertOne(visitorData)
-//     .then(() => {
-//       res.send(visitorData);
-//     })
-//     .catch((error) => {
-//       console.error('Error creating visitor:', error);
-//       res.status(500).send('An error occurred while creating the visitor');
-//     });
-// });
-app.post('/visitorRegister', verifyToken, (req, res) => {
+//Create a visitor
+app.post('/visitorRegister', (req, res) => {
   const { name, contact, gender } = req.body;
 
   // Generate a random 8-digit number for accesspass
@@ -229,17 +195,14 @@ app.post('/visitorRegister', verifyToken, (req, res) => {
     checkoutTime: null
   };
 
-  residentsCollection
-    .findOne({ name: req.user.name }) // Find the resident's information by searching the user's name in residentsCollection
-    .then((resident) => {
-      if (resident) {
-        visitorData.building = resident.building;
-        visitorData.apartment = resident.apartment;
-        visitorData.whomtovisit = resident.name; // Assuming resident's name is whom to visit
-      }
+  // Assuming you want to set these values from the request body
+  visitorData.building = req.body.building;
+  visitorData.apartment = req.body.apartment;
 
-      return visitorsCollection.insertOne(visitorData);
-    })
+  // Assuming you want to remove the logic related to finding resident information
+
+  visitorsCollection
+    .insertOne(visitorData)
     .then(() => {
       res.send(visitorData);
     })
@@ -248,6 +211,7 @@ app.post('/visitorRegister', verifyToken, (req, res) => {
       res.status(500).send('An error occurred while creating the visitor');
     });
 });
+
 
 // Update a visitor
 app.patch('/visitorUpdate', verifyToken, (req, res) => {
