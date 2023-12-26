@@ -10,6 +10,33 @@
 
 /**
  * @swagger
+ * /login:
+ *   post:
+ *     summary: Authenticate a user
+ *     tags: [Authentication]
+ *     requestBody:
+ *       description: User credentials for authentication
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *                 description: The username of the user.
+ *               password:
+ *                 type: string
+ *                 description: The password of the user.
+ *     responses:
+ *       '200':
+ *         description: User authenticated successfully. Returns a JWT token.
+ *       '401':
+ *         description: Unauthorized. Invalid credentials or user not found.
+ */
+
+/**
+ * @swagger
  * paths:
  *   /userRegister:
  *     post:
