@@ -13,7 +13,8 @@
  * /login:
  *   post:
  *     summary: Authenticate a user
- *     tags: User Management
+ *     tags: 
+ *       - User Management
  *     requestBody:
  *       description: User credentials for authentication
  *       required: true
