@@ -38,6 +38,44 @@
 /**
  * @swagger
  * paths:
+ *   /admin/login:
+ *     post:
+ *       summary: Admin Login
+ *       description: Authenticate an admin user and generate an authentication token.
+ *       tags:
+ *         - Admin
+ *       requestBody:
+ *         description: Admin login credentials
+ *         required: true
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 username:
+ *                   type: string
+ *                   description: The username of the admin user.
+ *                 password:
+ *                   type: string
+ *                   description: The password of the admin user.
+ *       responses:
+ *         '200':
+ *           description: Admin login successful. Returns an authentication token.
+ *           content:
+ *             application/json:
+ *               schema:
+ *                 type: object
+ *                 properties:
+ *                   token:
+ *                     type: string
+ *                     description: The authentication token for the admin user.
+ *         '401':
+ *           description: Admin login failed. Invalid credentials.
+ */
+
+/**
+ * @swagger
+ * paths:
  *   /userRegister:
  *     post:
  *       summary: Register a new user 

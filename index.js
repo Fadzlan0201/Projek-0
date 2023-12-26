@@ -171,6 +171,27 @@ app.post('/login', (req, res) => {
     });
 });
 
+// Admin login
+app.post('/admin/login', (req, res) => {
+  const { username, password } = req.body;
+
+  // Add authentication logic for admin users here
+  // For example, you can check if the user has an "admin" role
+
+  // Replace this with your authentication logic
+  if (username === 'fadzlan' && password === 'fayz123') {
+    const adminUser = {
+      username: 'fadzlan',
+      role: 'admin',
+    };
+    let token = generateToken(adminUser);
+    console.log('Admin login successful');
+    res.send(token);
+  } else {
+    res.status(401).send('Admin login failed. Invalid credentials.');
+  }
+});
+
 // User logout
 app.post('/logout', (req, res) => {
   res.send('User logged out successfully');
