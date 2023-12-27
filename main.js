@@ -180,7 +180,7 @@
  *               gender: Male
  *               building: Building A
  *               apartment: 123
- *               whomtovisit: null
+ *               whomtovisit: ahmad
  *               entryTime: null
  *               checkoutTime: null
  *       500:
