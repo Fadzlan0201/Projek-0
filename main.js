@@ -318,7 +318,7 @@
  *   /userUpdate:
  *     patch:
  *       summary: Update user password
- *       description: Update the password of a user by their contact number. Only admin users can perform this action.
+ *       description: Update the password of a user by their username. Only admin users can perform this action.
  *       tags:
  *         - Admin Management
  *       security:
@@ -332,12 +332,10 @@
  *             properties:
  *               username:
  *                 type: string
- *               password:
- *                 type: string
  *               newpassword:
  *                 type: string
  *           example:
- *             password: old_password
+ *             username: john_doe
  *             newpassword: new_password
  *       responses:
  *         200:
@@ -345,9 +343,9 @@
  *         400:
  *           description: Invalid input data
  *         403:
- *           description: You do not have a user with that phone number
+ *           description: You do not have permission to update user passwords
  *         404:
- *           description: No user with that phone number exists
+ *           description: No user with that username exists
  *         500:
- *           description: An error occurred while updating the visitor
+ *           description: An error occurred while updating the user
  */

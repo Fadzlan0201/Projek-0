@@ -268,19 +268,21 @@ app.patch('/visitorUpdate', verifyToken, (req, res) => {
 // update a user
 app.patch('/userUpdate', verifyToken, (req, res) => {
   const { username, newpassword } = req.body;
-  const userName = req.user.name;
+  const currentUser = req.user; // Assuming req.user contains user information including role
 
-  visitorsCollection
+  if (currentUser.role !== 'admin') {
+    return res.status(403).send('You do not have permission to update user passwords');
+  }
+
+  usersCollection
     .findOne({ username })
     .then((user) => {
       if (!user) {
-        res.status(404).send('No user with that phone number exist');
-      } else if (req.user.role !== 'admin') {
-        res.status(403).send('You do not have a user with that phone number');
+        res.status(404).send('No user with that username exists');
       } else {
         return usersCollection.findOneAndUpdate(
           { username },
-          { $set: { "password" : newpassword } },
+          { $set: { password: newpassword } },
           { returnOriginal: false }
         );
       }
@@ -292,9 +294,10 @@ app.patch('/userUpdate', verifyToken, (req, res) => {
     })
     .catch((error) => {
       console.error('Error updating user:', error);
-      res.status(500).send('An error occurred while updating the visitor');
+      res.status(500).send('An error occurred while updating the user');
     });
 });
+
 // Delete a visitor
 app.delete('/visitorDelete', verifyToken, (req, res) => {
   const accesspass = req.body.accesspass;
