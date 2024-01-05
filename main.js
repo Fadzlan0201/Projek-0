@@ -317,12 +317,10 @@
  * paths:
  *   /userUpdate:
  *     patch:
- *       summary: Update user password
+ *       summary: Update user password (Admin only)
  *       description: Update the password of a user by their username. Only admin users can perform this action.
  *       tags:
- *         - Admin Management
- *       security:
- *         - BearerAuth: []
+ *         - Users
  *       parameters:
  *         - name: username
  *           in: body
@@ -339,13 +337,16 @@
  *             newpassword: new_password
  *       responses:
  *         200:
- *           description: User detail updated successfully
+ *           description: User password updated successfully
  *         400:
  *           description: Invalid input data
  *         403:
- *           description: You do not have permission to update user passwords
+ *           description: Only admin users are allowed to update user passwords
  *         404:
  *           description: No user with that username exists
  *         500:
- *           description: An error occurred while updating the user
+ *           description: An error occurred while updating the user password
+ *       security:
+ *         - bearerAuth: []  # Assuming you use bearer token authentication
+ *         - role: [admin]   # Specify that the "admin" role is required
  */

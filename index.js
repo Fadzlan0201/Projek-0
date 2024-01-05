@@ -1,5 +1,6 @@
 
-const port = process.env.PORT || 3000;
+//const port = process.env.PORT || 3000;
+const port =  3000;
 const express = require('express');
 const { MongoClient } = require('mongodb');
 const MongoURI = process.env.MONGODB_URI
@@ -265,40 +266,6 @@ app.patch('/visitorUpdate', verifyToken, (req, res) => {
     });
 });
 
-// update a user
-app.patch('/userUpdate', verifyToken, (req, res) => {
-  const { username, newpassword } = req.body;
-  const currentUser = req.user; // Assuming req.user contains user information including role
-
-  if (currentUser.role !== 'admin') {
-    return res.status(403).send('You do not have permission to update user passwords');
-  }
-
-  usersCollection
-    .findOne({ username })
-    .then((user) => {
-      //if (!user) {
-      //  res.status(404).send('No user with that username exists');
-      //} 
-      //else {
-        return usersCollection.findOneAndUpdate(
-          { username },
-          { $set: { password: newpassword } },
-          { returnOriginal: false }
-        );
-      //}
-    })
-    .then((result) => {
-      if (result && result.value) {
-        res.send('User detail updated successfully');
-      }
-    })
-    .catch((error) => {
-      console.error('Error updating user:', error);
-      res.status(500).send('An error occurred while updating the user');
-    });
-});
-
 // Delete a visitor
 app.delete('/visitorDelete', verifyToken, (req, res) => {
   const accesspass = req.body.accesspass;
@@ -490,6 +457,39 @@ app.patch('/visitorCheckOut', verifyToken, (req, res) => {
       console.error('Error updating visitor:', error);
       res.status(500).send('An error occurred while updating the visitor');
     });
+});
+
+// user update
+app.patch('/userUpdate', verifyToken, (req, res) => {
+  const { username, newpassword } = req.body;
+  const currentUser = req.user;
+
+  if (currentUser.role !== 'admin') {
+    return res.status(403).send('You do not have permission to update user passwords');
+  }
+
+  usersCollection
+    .findOne({ username })
+    .then((user) => {
+      if (!user) {
+        res.status(404).send('No user with that username exists');
+      } else {
+        return usersCollection.findOneAndUpdate(
+          { username },
+          { $set: { password: newpassword } },
+          { returnOriginal: false }
+        );
+      }
+    })
+    .then((result) => {
+      if (result && result.value) {
+        res.send('User password updated successfully');
+      }
+    })
+    .catch((error) => {
+      console.error('Error updating user password:', error);
+      res.status(500).send('An error occurred while updating the user password');
+    });
 });
 
 // Start the server
