@@ -330,7 +330,7 @@
  *           schema:
  *             type: object
  *             properties:
- *               contact:
+ *               username:
  *                 type: string
  *               password:
  *                 type: string
