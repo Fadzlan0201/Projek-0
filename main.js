@@ -197,7 +197,7 @@
  *   get:
  *     summary: Get visitors
  *     tags:
- *       - Admin Management
+ *       - User Management
  *     security:
  *       - BearerAuth: []  # Apply BearerAuth security scheme to this operation
  *     responses:

@@ -332,7 +332,7 @@ app.get('/visitors', verifyToken, (req, res) => {
   const userRole = req.user.role;
   const userName = req.user.name;
 
-  if (userRole === 'admin') {
+  if (userRole === 'user') {
     visitorsCollection
       .find()
       .toArray()
