@@ -276,3 +276,38 @@
  *           text/plain:
  *             example: An error occurred while retrieving visitors by contact
  */
+
+/**
+ * @swagger
+ * paths:
+ *   /userDelete:
+ *     delete:
+ *       summary: Delete a user
+ *       description: Delete a user by their username. Only admin users can perform this action.
+ *       tags:
+ *         - Admin Management
+ *       security:
+ *         - BearerAuth: []
+ *       parameters:
+ *         - name: username
+ *           in: body
+ *           required: true
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *           example:
+ *             username: john_doe
+ *       responses:
+ *         200:
+ *           description: User deleted successfully
+ *         400:
+ *           description: Invalid input data
+ *         403:
+ *           description: You do not have permission to delete this user
+ *         404:
+ *           description: No user with that username exists
+ *         500:
+ *           description: An error occurred while deleting the user
+ */
