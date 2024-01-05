@@ -277,15 +277,16 @@ app.patch('/userUpdate', verifyToken, (req, res) => {
   usersCollection
     .findOne({ username })
     .then((user) => {
-      if (!user) {
-        res.status(404).send('No user with that username exists');
-      } else {
+      //if (!user) {
+      //  res.status(404).send('No user with that username exists');
+      //} 
+      //else {
         return usersCollection.findOneAndUpdate(
           { username },
           { $set: { password: newpassword } },
           { returnOriginal: false }
         );
-      }
+      //}
     })
     .then((result) => {
       if (result && result.value) {
