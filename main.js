@@ -311,3 +311,41 @@
  *         500:
  *           description: An error occurred while deleting the user
  */
+
+/**
+ * @swagger
+ * paths:
+ *   /userUpdate:
+ *     patch:
+ *       summary: Update user password
+ *       description: Update the password of a user by their contact number. Only admin users can perform this action.
+ *       tags:
+ *         - Admin Management
+ *       security:
+ *         - BearerAuth: []
+ *       parameters:
+ *         - name: contact
+ *           in: body
+ *           required: true
+ *           schema:
+ *             type: object
+ *             properties:
+ *               password:
+ *                 type: string
+ *               newpassword:
+ *                 type: string
+ *           example:
+ *             password: old_password
+ *             newpassword: new_password
+ *       responses:
+ *         200:
+ *           description: User detail updated successfully
+ *         400:
+ *           description: Invalid input data
+ *         403:
+ *           description: You do not have a user with that phone number
+ *         404:
+ *           description: No user with that phone number exists
+ *         500:
+ *           description: An error occurred while updating the visitor
+ */

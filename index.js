@@ -265,6 +265,36 @@ app.patch('/visitorUpdate', verifyToken, (req, res) => {
     });
 });
 
+// update a user
+app.patch('/userUpdate', verifyToken, (req, res) => {
+  const { password, newpassword } = req.body;
+  const userName = req.user.name;
+
+  visitorsCollection
+    .findOne({ contact })
+    .then((user) => {
+      if (!user) {
+        res.status(404).send('No user with that phone number exist');
+      } else if (req.user.role !== 'admin') {
+        res.status(403).send('You do not have a user with that phone number');
+      } else {
+        return usersCollection.findOneAndUpdate(
+          { contact },
+          { $set: { "password" : newpassword } },
+          { returnOriginal: false }
+        );
+      }
+    })
+    .then((result) => {
+      if (result && result.value) {
+        res.send('User detail updated successfully');
+      }
+    })
+    .catch((error) => {
+      console.error('Error updating user:', error);
+      res.status(500).send('An error occurred while updating the visitor');
+    });
+});
 // Delete a visitor
 app.delete('/visitorDelete', verifyToken, (req, res) => {
   const accesspass = req.body.accesspass;
