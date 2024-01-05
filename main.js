@@ -321,6 +321,9 @@
  *       description: Update the password of a user by their username. Only admin users can perform this action.
  *       tags:
  *         - Users
+ *       security:
+ *         - bearerAuth: []  # Assuming you use bearer token authentication
+ *         - role: [admin]   # Specify that the "admin" role is required
  *       parameters:
  *         - name: username
  *           in: body
@@ -346,7 +349,4 @@
  *           description: No user with that username exists
  *         500:
  *           description: An error occurred while updating the user password
- *       security:
- *         - bearerAuth: []  # Assuming you use bearer token authentication
- *         - role: [admin]   # Specify that the "admin" role is required
  */
