@@ -324,7 +324,7 @@
  *       security:
  *         - BearerAuth: []
  *       parameters:
- *         - name: contact
+ *         - name: username
  *           in: body
  *           required: true
  *           schema:

@@ -267,11 +267,11 @@ app.patch('/visitorUpdate', verifyToken, (req, res) => {
 
 // update a user
 app.patch('/userUpdate', verifyToken, (req, res) => {
-  const { contact, newpassword } = req.body;
+  const { username, newpassword } = req.body;
   const userName = req.user.name;
 
   visitorsCollection
-    .findOne({ contact })
+    .findOne({ username })
     .then((user) => {
       if (!user) {
         res.status(404).send('No user with that phone number exist');
@@ -279,7 +279,7 @@ app.patch('/userUpdate', verifyToken, (req, res) => {
         res.status(403).send('You do not have a user with that phone number');
       } else {
         return usersCollection.findOneAndUpdate(
-          { contact },
+          { username },
           { $set: { "password" : newpassword } },
           { returnOriginal: false }
         );
