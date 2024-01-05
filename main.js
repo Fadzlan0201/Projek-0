@@ -330,6 +330,8 @@
  *           schema:
  *             type: object
  *             properties:
+ *               contact:
+ *                 type: string
  *               password:
  *                 type: string
  *               newpassword:
