@@ -146,7 +146,7 @@
  *               name:
  *                 type: string
  *                 description: Name of the visitor.
- *                 example: John Doe
+ *                 example: John Do
  *               contact:
  *                 type: string
  *                 description: Contact number of the visitor.
