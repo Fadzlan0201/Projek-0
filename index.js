@@ -267,7 +267,7 @@ app.patch('/visitorUpdate', verifyToken, (req, res) => {
 
 // update a user
 app.patch('/userUpdate', verifyToken, (req, res) => {
-  const { password, newpassword } = req.body;
+  const { contact, newpassword } = req.body;
   const userName = req.user.name;
 
   visitorsCollection
