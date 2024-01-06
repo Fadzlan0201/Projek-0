@@ -166,7 +166,7 @@
  *               whomtovisit: 
  *                 type: string
  *                 description: User information.
- *                 example: ahmad
+ *                 example: ahma
  *                
  *     responses:
  *       200:
