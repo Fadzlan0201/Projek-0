@@ -536,7 +536,7 @@ app.patch('/userUpdate', verifyToken, (req, res) => {
 // host contact
 app.get('/hostcontact', verifyToken, (req, res) => {
   const userRole = req.user.role;
-  const contact = req.query.accesspass;
+  const accesspass = req.query.accesspass;
 
   // Check if the user has the 'security' role
   if (userRole !== 'security') {
