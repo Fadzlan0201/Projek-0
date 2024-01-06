@@ -260,7 +260,7 @@ app.post('/visitorRegister', verifyToken, (req, res) => {
   // Assuming you want to set these values from the request body
   visitorData.building = req.body.building;
   visitorData.apartment = req.body.apartment;
-
+  visitorData.whomtovisit = req.body.whomtovisit;
   // Assuming you want to remove the logic related to finding resident information
 
   visitorsCollection
