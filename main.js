@@ -426,3 +426,37 @@
  *       500:
  *         description: Error registering user
  */
+
+/**
+ * @swagger
+ * /GetUser:
+ *   get:
+ *     summary: Get users (Requires 'admin' role)
+ *     description: Retrieve a list of users. Only users with the 'admin' role can access this endpoint.
+ *     tags:
+ *       - Admin Management
+ *     security:
+ *       - BearerAuth: []
+ *     responses:
+ *       200:
+ *         description: List of users retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: array
+ *               items:
+ *                 type: object
+ *                 properties:
+ *                   username:
+ *                     type: string
+ *                   name:
+ *                     type: string
+ *                   email:
+ *                     type: string
+ *                   role:
+ *                     type: string
+ *       403:
+ *         description: Access denied. Only users with the 'admin' role can access this endpoint.
+ *       500:
+ *         description: Error retrieving users
+ */

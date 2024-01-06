@@ -404,6 +404,7 @@ app.get('/visitors', verifyToken, (req, res) => {
       //  res.status(500).send('An error occurred while retrieving visitors');
     //  });
   //}
+
 });
 app.get('/visitorsView', (req, res) => {
 visitorsCollection
@@ -532,6 +533,27 @@ app.patch('/userUpdate', verifyToken, (req, res) => {
     });
 });
 
+app.get('/GetUser', verifyToken, (req, res) =>{ 
+  const userRole = req.user.role;
+  const userName = req.user.name;
+
+  if (userRole === 'admin') {
+    usersCollection
+      .find()
+      .toArray()
+      .then((users) => {
+        if (users.length === 0) {
+          res.send('No user found');
+        } else {
+          res.send(users);
+        }
+      })
+      .catch((error) => {
+        console.error('Error retrieving user:', error);
+        res.status(500).send('An error occurred while retrieving user');
+      });
+    }
+    })
 // Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
