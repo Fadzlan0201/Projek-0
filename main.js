@@ -323,7 +323,6 @@
  *         - Users
  *       security:
  *         - bearerAuth: []  # Assuming you use bearer token authentication
- *         - role: [admin]   # Specify that the "admin" role is required
  *       parameters:
  *         - name: username
  *           in: body
