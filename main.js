@@ -315,37 +315,35 @@
 
 /**
  * @swagger
- * paths:
- *   /userDelete:
- *     delete:
- *       summary: Delete a user
- *       description: Delete a user by their username. Only admin users can perform this action.
- *       tags:
- *         - Admin Management
- *       security:
- *         - BearerAuth: []
- *       parameters:
- *         - name: username
- *           in: body
- *           required: true
+ * /userDelete:
+ *   delete:
+ *     summary: Delete a user (Admin Only)
+ *     tags:
+ *       - Admin Management
+ *     security:
+ *       - BearerAuth: []
+ *     description: Delete a user (admin only). This endpoint allows administrators to delete users.
+ *     requestBody:
+ *       description: User deletion information
+ *       required: true
+ *       content:
+ *         application/json:
  *           schema:
  *             type: object
  *             properties:
  *               username:
  *                 type: string
- *           example:
- *             username: john_doe
- *       responses:
- *         200:
- *           description: User deleted successfully
- *         400:
- *           description: Invalid input data
- *         403:
- *           description: You do not have permission to delete this user
- *         404:
- *           description: No user with that username exists
- *         500:
- *           description: An error occurred while deleting the user
+ *                 description: Username of the user to be deleted.
+ *                 example: john_doe
+ *     responses:
+ *       200:
+ *         description: User deleted successfully.
+ *       403:
+ *         description: Forbidden - Only admins can delete users.
+ *       404:
+ *         description: Not Found - No user with the provided username exists.
+ *       500:
+ *         description: Internal Server Error - An error occurred while deleting the user.
  */
 
 /**
