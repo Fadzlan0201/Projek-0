@@ -460,3 +460,38 @@
  *       500:
  *         description: Error retrieving users
  */
+
+/**
+ * @swagger
+ * /hostcontact:
+ *   get:
+ *     summary: Retrieve host's contact by visitor access pass (Requires 'security' role)
+ *     description: Retrieve the host's contact number by providing the visitor's access pass. Only authenticated users with the 'security' role can access this endpoint.
+ *     tags:
+ *       - Security Management
+ *     security:
+ *       - BearerAuth: []
+ *     parameters:
+ *       - in: query
+ *         name: accesspass
+ *         schema:
+ *           type: string
+ *         required: true
+ *         description: The access pass of the visitor.
+ *     responses:
+ *       200:
+ *         description: Host's contact retrieved successfully
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 hostContact:
+ *                   type: string
+ *       403:
+ *         description: Access denied. Only users with the 'security' role can access this endpoint.
+ *       404:
+ *         description: No visitor found with the given access pass.
+ *       500:
+ *         description: Error retrieving host contact by visitor access pass.
+ */

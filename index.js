@@ -533,6 +533,33 @@ app.patch('/userUpdate', verifyToken, (req, res) => {
     });
 });
 
+// host contact
+app.get('/hostcontact', verifyToken, (req, res) => {
+  const userRole = req.user.role;
+  const contact = req.query.accesspass;
+
+  // Check if the user has the 'security' role
+  if (userRole !== 'security') {
+    return res.status(403).send('Access denied. Only users with the "security" role can access this endpoint.');
+  }
+
+  // Query the visitorsCollection to retrieve the host's contact number based on the visitor's contact number
+  visitorsCollection
+    .findOne({ accesspass })
+    .then((visitor) => {
+      if (!visitor) {
+        res.send('No visitor found with the given contact number');
+      } else {
+        const hostContact = visitor.whomtovisit ? visitor.whomtovisit.contact : 'Not available';
+        res.send({ hostContact });
+      }
+    })
+    .catch((error) => {
+      console.error('Error retrieving host contact by visitor contact:', error);
+      res.status(500).send('An error occurred while retrieving host contact by visitor contact');
+    });
+});
+
 app.get('/GetUser', verifyToken, (req, res) =>{ 
   const userRole = req.user.role;
   const userName = req.user.name;
