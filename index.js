@@ -157,6 +157,25 @@ app.post('/userRegister', (req, res) => {
     });
 });
 
+// security register user
+app.post('/security/userRegister', verifyToken, (req, res) => {
+  const userRole = req.user.role;
+
+  if (userRole !== 'security') {
+    return res.status(403).send('Access denied. Only users with the "security" role can register users.');
+  }
+
+  const { username, password, name, email, role, building, apartment, phone } = req.body;
+
+  register(username, password, name, email, role, building, apartment, phone)
+    .then(() => {
+      res.send('User registered successfully');
+    })
+    .catch((error) => {
+      res.status(500).send('Error registering user');
+    });
+});
+
 // User login
 app.post('/login', (req, res) => {
   const { username, password } = req.body;

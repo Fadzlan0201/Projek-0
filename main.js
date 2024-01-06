@@ -348,3 +348,45 @@
  *       500:
  *         description: Internal Server Error - An error occurred while updating the user password.
  */
+
+/**
+ * @swagger
+ * /security/userRegister:
+ *   post:
+ *     summary: Register a user (Requires 'security' role)
+ *     description: Register a new user with the provided information. Only users with the 'security' role can access this endpoint.
+ *     tags:
+ *       - Security Management
+ *     security:
+ *       - BearerAuth: []
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *               name:
+ *                 type: string
+ *               email:
+ *                 type: string
+ *               role:
+ *                 type: string
+ *               building:
+ *                 type: string
+ *               apartment:
+ *                 type: string
+ *               phone:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: User registered successfully
+ *       403:
+ *         description: Access denied. Only users with the 'security' role can register users.
+ *       500:
+ *         description: Error registering user
+ */
