@@ -252,7 +252,7 @@ app.post('/visitorRegister', verifyToken, (req, res) => {
     gender,
     building: null,
     apartment: null,
-    whomtovisit,
+    whomtovisit: null,
     entryTime: null,
     checkoutTime: null
   };
