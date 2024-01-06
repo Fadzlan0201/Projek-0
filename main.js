@@ -81,7 +81,7 @@
  *     summary: Login as a security user
  *     description: Authenticate and login as a security user with the provided credentials.
  *     tags:
- *       - Security
+ *       - Security Management
  *     requestBody:
  *       required: true
  *       content:
@@ -117,7 +117,7 @@
  *     post:
  *       summary: Register a new user 
  *       tags:
- *         - User Management
+ *         - Testing
  *       requestBody:
  *         description: User registration details
  *         required: true
