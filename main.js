@@ -314,38 +314,37 @@
 
 /**
  * @swagger
- * paths:
- *   /userUpdate:
- *     patch:
- *       summary: Update user password (Admin only)
- *       description: Update the password of a user by their username. Only admin users can perform this action.
- *       tags:
- *         - Users
- *       security:
- *         - BearerAuth: []  # Assuming you use bearer token authentication
- *       parameters:
- *         - name: username
- *           in: body
- *           required: true
+ * /userUpdate:
+ *   patch:
+ *     summary: Update user password (Admin Only)
+ *     tags:
+ *       - User Management
+ *     security:
+ *       - BearerAuth: []
+ *     description: Update the password of a user (admin only).
+ *     requestBody:
+ *       description: User password update information
+ *       required: true
+ *       content:
+ *         application/json:
  *           schema:
  *             type: object
  *             properties:
  *               username:
  *                 type: string
+ *                 description: Username of the user whose password needs to be updated.
+ *                 example: john_doe
  *               newpassword:
  *                 type: string
- *           example:
- *             username: john_doe
- *             newpassword: new_password
- *       responses:
- *         200:
- *           description: User password updated successfully
- *         400:
- *           description: Invalid input data
- *         403:
- *           description: Only admin users are allowed to update user passwords
- *         404:
- *           description: No user with that username exists
- *         500:
- *           description: An error occurred while updating the user password
+ *                 description: New password for the user.
+ *                 example: new_password123
+ *     responses:
+ *       200:
+ *         description: User password updated successfully.
+ *       403:
+ *         description: Forbidden - Only admins can update user passwords.
+ *       404:
+ *         description: User not found - No user with the provided username exists.
+ *       500:
+ *         description: Internal Server Error - An error occurred while updating the user password.
  */
