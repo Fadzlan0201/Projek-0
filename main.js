@@ -202,7 +202,7 @@
  *               whomtovisit: 
  *                 type: string
  *                 description: User information.
- *                 example: ahma
+ *                 example: ahmad
  *                
  *     responses:
  *       200:
