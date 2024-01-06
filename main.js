@@ -76,6 +76,42 @@
 
 /**
  * @swagger
+ * /security/login:
+ *   post:
+ *     summary: Login as a security user
+ *     description: Authenticate and login as a security user with the provided credentials.
+ *     tags:
+ *       - Security
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             properties:
+ *               username:
+ *                 type: string
+ *               password:
+ *                 type: string
+ *     responses:
+ *       200:
+ *         description: Security user login successful
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: string
+ *               example: "JWT_TOKEN_HERE"
+ *       401:
+ *         description: Security user login failed. Invalid credentials.
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: string
+ *               example: "Invalid credentials"
+ */
+
+/**
+ * @swagger
  * paths:
  *   /userRegister:
  *     post:

@@ -212,6 +212,27 @@ app.post('/admin/login', (req, res) => {
   }
 });
 
+// visitor login
+app.post('/security/login', (req, res) => {
+  const { username, password } = req.body;
+
+  // Add authentication logic for security users here
+  // For example, you can check if the user has a "security" role
+
+  // Replace this with your authentication logic
+  if (username === 'UncleSaiful' && password === 'security001') {
+    const securityUser = {
+      username: 'UncleSaiful',
+      role: 'security',
+    };
+    let token = generateToken(securityUser);
+    console.log('Security login successful');
+    res.send(token);
+  } else {
+    res.status(401).send('Security login failed. Invalid credentials.');
+  }
+});
+
 // User logout
 app.post('/logout', (req, res) => {
   res.send('User logged out successfully');
