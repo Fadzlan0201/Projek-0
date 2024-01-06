@@ -322,7 +322,7 @@
  *       tags:
  *         - Users
  *       security:
- *         - bearerAuth: []  # Assuming you use bearer token authentication
+ *         - BearerAuth: []  # Assuming you use bearer token authentication
  *       parameters:
  *         - name: username
  *           in: body
